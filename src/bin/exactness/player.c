@@ -885,7 +885,8 @@ _setup_dest_type(const char *dest, Eina_Bool external_injection)
              _dest_type = FTYPE_EXU;
              /* Cut path at the beginning of the file name */
              char *file_start = strrchr(dest, '/');
-             *file_start = '\0';
+             if (file_start)
+               *file_start = '\0';
 
              if (!ecore_file_mkpath(dest))
                {
