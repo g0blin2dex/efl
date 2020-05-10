@@ -289,48 +289,48 @@ endif
 
 subprojects = [
 # name              |   option              | mod  | lib  | bin  | bench | tests | examples | true if build in efl-one | pkg-config options | name of static libs
-['evil'             ,[]                    , false,  true, false, false, false, false, false, [], []],
-['eina'             ,[]                    , false,  true,  true,  true,  true,  true, false,  [], []],
+['evil'             ,[]                    , false,  true, false, false, false, false, false, [], []], #FIXME this should be part of efl-one
+['eina'             ,[]                    , false,  true,  true,  true,  true,  true,  true, [], []],
 ['eolian'           ,[]                    , false,  true,  true, false,  true, false, false, ['eina'], []],
-['eo'               ,[]                    , false,  true, false,  true,  true, false, false, ['eina'], []],
-['efl'              ,[]                    , false,  true, false, false,  true, false, false, ['eo'], []],
-['emile'            ,[]                    , false,  true, false, false,  true,  true, false, ['eina', 'efl'], ['lz4', 'rg_etc']],
-['eet'              ,[]                    , false,  true,  true, false,  true,  true, false, ['eina', 'emile', 'efl'], []],
-['ecore'            ,[]                    , false,  true, false, false, false, false, false, ['eina', 'eo', 'efl'], ['buildsystem']],
-['eldbus'           ,[]                    , false,  true,  true, false,  true,  true, false, ['eina', 'eo', 'efl'], []],
-['ecore'            ,[]                    ,  true, false, false, false,  true,  true, false, ['eina', 'eo', 'efl'], []], #ecores modules depend on eldbus
-['ecore_audio'      ,['audio']             , false,  true, false, false, false, false, false, ['eina', 'eo'], []],
+['eo'               ,[]                    , false,  true, false,  true,  true, false,  true, ['eina'], []],
+['efl'              ,[]                    , false,  true, false, false,  true, false,  true, ['eo'], []],
+['emile'            ,[]                    , false,  true, false, false,  true,  true,  true, ['eina', 'efl'], ['lz4', 'rg_etc']],
+['eet'              ,[]                    , false,  true,  true, false,  true,  true,  true, ['eina', 'emile', 'efl'], []],
+['ecore'            ,[]                    , false,  true, false, false, false, false,  true, ['eina', 'eo', 'efl'], ['buildsystem']],
+['eldbus'           ,[]                    , false,  true,  true, false,  true,  true,  true, ['eina', 'eo', 'efl'], []],
+['ecore'            ,[]                    ,  true, false, false, false,  true,  true,  true, ['eina', 'eo', 'efl'], []], #ecores modules depend on eldbus
+['ecore_audio'      ,['audio']             , false,  true, false, false, false, false,  true, ['eina', 'eo'], []],
 ['ecore_avahi'      ,['avahi']             , false,  true, false, false, false,  true, false, ['eina', 'ecore'], []],
-['ecore_con'        ,[]                    , false,  true,  true, false,  true, false, false, ['eina', 'eo', 'efl', 'ecore'], ['http-parser']],
-['ecore_file'       ,[]                    , false,  true, false, false, false, false, false, ['eina'], []],
-['eeze'             ,['eeze']              ,  true,  true,  true, false,  true, false, false, ['eina', 'efl'], []],
-['ecore_input'      ,[]                    , false,  true, false, false, false, false, false, ['eina', 'eo'], []],
-['ecore_x'          ,['x11']               , false,  true, false, false, false, false, false, ['eina', 'efl'], []],
-['ecore_fb'         ,['fb']                , false,  true, false, false, false, false, false, ['eina'], []],
-['ecore_wl2'        ,['wl']                ,  true,  true, false, false, true, false, false, ['eina'], ['libdrm']],
-['ecore_sdl'        ,['sdl']               , false,  true, false, false, false, false, false, ['eina'], []],
-['ecore_win32'      ,[]                    , false,  true, false, false, false, false, false, ['eina'], []],
-['ecore_ipc'        ,[]                    , false,  true, false, false, false, false, false, ['eina'], []],
-['ecore_buffer'     ,['buffer']            ,  true,  true,  true, false, false, false, false, ['eina'], []],
-['ector'            ,[]                    , false,  true, false, false,  true, false, false, ['eina', 'efl'], ['draw', 'triangulator', 'freetype']],
-['elput'            ,['drm']               , false,  true, false, false,  true, false, false, ['eina', 'eldbus'], []],
-['ecore_drm2'       ,['drm']               , false,  true, false, false, false, false, false, ['ecore'], ['libdrm']],
-['ecore_cocoa'      ,['cocoa']             , false,  true, false, false, false, false, false, ['eina'], []],
-['evas'             ,[]                    ,  true,  true, false, false,  true,  true, false, ['eina', 'efl', 'eo'], ['vg_common', 'libunibreak']],
-['efreet'           ,[]                    , false,  true, false, false,  true, false, false, ['eina', 'efl', 'eo'], []],
-['ecore_input_evas' ,[]                    , false,  true, false, false, false, false, false, ['eina', 'evas'], []],
-['ecore_evas'       ,[]                    ,  true,  true,  true, false, false, false, false, ['evas', 'ector'], []],
-['ecore_imf'        ,[]                    ,  true,  true, false, false, false, false, false, ['eina'], []],
-['embryo'           ,[]                    , false,  true,  true, false, false, false, false, ['eina', 'efl', 'eo'], []],
-['eio'              ,[]                    , false,  true, false, false,  true,  true, false, ['eina', 'eet'], []],
-['efreet'           ,[]                    , false, false,  true, false, false, false, false, ['eina', 'efl', 'eo'], []],
-['ecore_imf_evas'   ,[]                    , false,  true, false, false, false, false, false, ['eina', 'efl', 'eo'], []],
-['ephysics'         ,['physics']           , false,  true, false, false, false, false, false, ['eina', 'efl', 'eo'], []],
-['edje'             ,[]                    , false,  true,  true, false,  true,  true, false, ['evas', 'eo', 'efl', lua_pc_name], []],
-['emotion'          ,[]                    ,  true,  true, false, false,  true,  true, false, ['eina', 'efl', 'eo'], []],
-['ethumb'           ,[]                    ,  true,  true,  true, false, false, false, false, ['eina', 'efl', 'eo'], []],
-['ethumb_client'    ,[]                    , false,  true,  true, false, false,  true, false, ['eina', 'efl', 'eo', 'ethumb'], []],
-['elementary'       ,[]                    ,  true,  true,  true,  true,  true,  true, false, ['eina', 'efl', 'eo', 'eet', 'evas', 'ecore', 'ecore-evas', 'ecore-file', 'ecore-input', 'edje', 'ethumb-client', 'emotion', 'ecore-imf', 'ecore-con', 'eldbus', 'efreet', 'efreet-mime', 'efreet-trash', 'eio'], ['atspi']],
+['ecore_con'        ,[]                    , false,  true,  true, false,  true, false,  true, ['eina', 'eo', 'efl', 'ecore'], ['http-parser']],
+['ecore_file'       ,[]                    , false,  true, false, false, false, false,  true, ['eina'], []],
+['eeze'             ,['eeze']              ,  true,  true,  true, false,  true, false,  true, ['eina', 'efl'], []],
+['ecore_input'      ,[]                    , false,  true, false, false, false, false,  true, ['eina', 'eo'], []],
+['ecore_x'          ,['x11']               , false,  true, false, false, false, false,  true, ['eina', 'efl'], []],
+['ecore_fb'         ,['fb']                , false,  true, false, false, false, false,  true, ['eina'], []],
+['ecore_wl2'        ,['wl']                ,  true,  true, false, false,  true, false,  true, ['eina'], ['libdrm']],
+['ecore_sdl'        ,['sdl']               , false,  true, false, false, false, false,  true, ['eina'], []],
+['ecore_win32'      ,[]                    , false,  true, false, false, false, false, false, ['eina'], []], #FIXME this should be part of efl-one
+['ecore_ipc'        ,[]                    , false,  true, false, false, false, false,  true, ['eina'], []],
+['ecore_buffer'     ,['buffer']            ,  true,  true,  true, false, false, false,  true, ['eina'], []],
+['ector'            ,[]                    , false,  true, false, false,  true, false,  true, ['eina', 'efl'], ['draw', 'triangulator', 'freetype']],
+['elput'            ,['drm']               , false,  true, false, false,  true, false,  true, ['eina', 'eldbus'], []],
+['ecore_drm2'       ,['drm']               , false,  true, false, false, false, false,  true, ['ecore'], ['libdrm']],
+['ecore_cocoa'      ,['cocoa']             , false,  true, false, false, false, false, false, ['eina'], []], #FIXME this should be part of efl-one
+['evas'             ,[]                    ,  true,  true, false, false,  true,  true,  true, ['eina', 'efl', 'eo'], ['vg_common', 'libunibreak']],
+['efreet'           ,[]                    , false,  true, false, false,  true, false,  true, ['eina', 'efl', 'eo'], []],
+['ecore_input_evas' ,[]                    , false,  true, false, false, false, false,  true, ['eina', 'evas'], []],
+['ecore_evas'       ,[]                    ,  true,  true,  true, false, false, false,  true, ['evas', 'ector'], []],
+['ecore_imf'        ,[]                    ,  true,  true, false, false, false, false,  true, ['eina'], []],
+['embryo'           ,[]                    , false,  true,  true, false, false, false,  true, ['eina', 'efl', 'eo'], []],
+['eio'              ,[]                    , false,  true, false, false,  true,  true,  true, ['eina', 'eet'], []],
+['efreet'           ,[]                    , false, false,  true, false, false, false,  true, ['eina', 'efl', 'eo'], []],
+['ecore_imf_evas'   ,[]                    , false,  true, false, false, false, false,  true, ['eina', 'efl', 'eo'], []],
+['ephysics'         ,['physics']           , false,  true, false, false, false, false,  true, ['eina', 'efl', 'eo'], []],
+['edje'             ,[]                    , false,  true,  true, false,  true,  true,  true, ['evas', 'eo', 'efl', lua_pc_name], []],
+['emotion'          ,[]                    ,  true,  true, false, false,  true,  true,  true, ['eina', 'efl', 'eo'], []],
+['ethumb'           ,[]                    ,  true,  true,  true, false, false, false,  true, ['eina', 'efl', 'eo'], []],
+['ethumb_client'    ,[]                    , false,  true,  true, false, false,  true,  true, ['eina', 'efl', 'eo', 'ethumb'], []],
+['elementary'       ,[]                    ,  true,  true,  true,  true,  true,  true,  true, ['eina', 'efl', 'eo', 'eet', 'evas', 'ecore', 'ecore-evas', 'ecore-file', 'ecore-input', 'edje', 'ethumb-client', 'emotion', 'ecore-imf', 'ecore-con', 'eldbus', 'efreet', 'efreet-mime', 'efreet-trash', 'eio'], ['atspi']],
 ['efl_canvas_wl'    ,['wl']                , false,  true,  true, false, false, false, false, ['eina', 'efl', 'eo', 'evas', 'ecore'], []],
 ['elua'             ,['elua']              , false,  true,  true, false,  true, false, false, ['eina', 'luajit'], []],
 ['ecore_wayland'    ,['wl-deprecated']     , false,  true, false, false, false, false, false, ['eina'], []],
@@ -351,6 +351,10 @@ ecore_audio = declare_dependency()
 
 test_dirs = []
 example_dirs = []
+efl_one_parts = []
+efl_one_deps = []
+efl_one_eo_deps = []
+efl_one_include_dirs = []
 tmp_empty = declare_dependency()
 
 foreach package : subprojects
@@ -398,6 +402,28 @@ foreach package : subprojects
       set_variable(package_name + '_eot_files', pub_eo_types_files)
       set_variable(package_name + '_header_subdirs', package_header_subdirs)
       set_variable(package_name + '_eo_subdirs', package_eo_subdirs)
+      if (package[8] and get_option('efl-one'))
+        src = get_variable(package_name+'_src')
+        external_deps = get_variable(package_name+'_ext_deps')
+        efl_one_include_dirs += [include_directories('.'), include_directories(join_paths(local_lib, package_name))]
+
+        foreach subdirs : package_eo_subdirs
+          efl_one_include_dirs += include_directories(join_paths(local_lib, package_name))
+        endforeach
+
+        tmp = static_library('efl_one_part_'+package_name,
+            src, pub_eo_file_target, priv_eo_file_target,
+            include_directories: efl_one_include_dirs,
+            dependencies: external_deps + efl_one_eo_deps,
+            c_args : package_c_args,
+        )
+        # dependency for all the .eo file targets
+        efl_one_eo_deps += declare_dependency(
+          sources: pub_eo_file_target,
+        )
+        efl_one_deps += external_deps
+        efl_one_parts += tmp
+      endif
     endif
     #special case for eolian, this is never efl-one, but will be required in the library
     if (package_name == 'eolian')
@@ -448,10 +474,46 @@ foreach package : subprojects
   endif
 endforeach
 
+if (get_option('efl-one'))
+  #building efl-one
+  efl_one_lib = shared_library('efl_one',
+    link_whole : efl_one_parts,
+    install : true,
+    version : meson.version(),
+  )
+
+  efl_one = declare_dependency(
+    link_with: efl_one_lib,
+    include_directories : efl_one_include_dirs,
+    dependencies : [thread_dep] + efl_one_eo_deps,
+    version: meson.version()
+  )
+
+  pkgconfig.generate(
+    name : 'efl-one',
+    description: 'Configureation for efl in one big fat .so',
+    libraries : efl_one,
+  )
+
+  #overwrite all the dependencies of subprojects with efl-one, in order to link the modules and binaries to the correct .so
+  foreach package : subprojects
+    package_name = package[0]
+    if package[1].length() == 0 or get_option(package[1][0])
+      if (package[3])
+        if (package[8] and get_option('efl-one'))
+          set_variable(package_name, efl_one)
+        endif
+      endif
+    endif
+  endforeach
+endif
+
 #delate build of bin, modules, and benchmarks
 foreach package : subprojects
   package_name = package[0]
   if package[1].length() == 0 or get_option(package[1][0])
+    dir_package_include = join_paths(dir_include, package_version_name)
+    dir_package_modules = join_paths(dir_lib, package_name, 'modules')
     if (package[2])
        subdir(join_paths(local_module, package_name))
     endif
