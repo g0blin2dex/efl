@@ -1,5 +1,6 @@
 efl_deps = []
 efl_pub_deps = [eo]
+efl_ext_deps = []
 
 efl_header_src = [
   'Efl.h',

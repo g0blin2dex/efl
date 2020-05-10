@@ -1,15 +1,16 @@
 ecore_input_evas_deps = [ecore, ecore_input, evas]
 ecore_input_evas_pub_deps = [eina, evas]
+ecore_input_evas_ext_deps = []
 pub_eo_file_target = []
 
 ecore_input_evas_header_src = [
    'Ecore_Input_Evas.h'
 ]
 
-ecore_input_evas_src = [
+ecore_input_evas_src = files([
   'ecore_input_evas.c',
   'ecore_input_evas_private.h',
-]
+])
 
 
 ecore_input_evas_lib = library('ecore_input_evas',

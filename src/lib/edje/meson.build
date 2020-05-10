@@ -6,7 +6,8 @@ edje_deps = [
   embryo, efreet, eio, intl
 ]
 
-edje_pub_deps = [m, evas, eo, efl, lua]
+edje_pub_deps = [evas, eo, efl]
+edje_ext_deps = [m, lua]
 
 if (get_option('physics'))
   edje_deps += ephysics
@@ -102,7 +103,7 @@ edje_header_src = [
   'efl_canvas_layout_eo.legacy.h',
 ]
 
-edje_src = [
+edje_src = files([
   'edje_private.h',
   'edje_convert.h',
   'edje_box_layout.c',
@@ -141,12 +142,11 @@ edje_src = [
   'edje_part_box.c',
   'edje_part_text.c',
   'edje_part_invalid.c'
-
-]
+])
 
 edje_lib = library('edje',
     edje_src, pub_eo_file_target, priv_eo_file_target,
-    dependencies: edje_pub_deps + edje_deps,
+    dependencies: edje_pub_deps + edje_deps + edje_ext_deps,
     include_directories : config_dir + [include_directories('.')],
     install: true,
     c_args : [package_c_args],

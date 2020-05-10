@@ -1,5 +1,6 @@
 eina_deps = [dl]
 eina_pub_deps = [thread_dep]
+eina_ext_deps = [m, rt, dl, thread_dep]
 
 if sys_windows == true
    eina_pub_deps += [evil]
@@ -114,7 +115,7 @@ public_headers = [
   'Eina.h'
 ]
 
-sources = [
+eina_src = files([
 'eina_abi.c',
 'eina_accessor.c',
 'eina_array.c',
@@ -191,12 +192,12 @@ sources = [
 'eina_vpath.c',
 'eina_vpath_xdg.c',
 'eina_abstract_content.c',
-]
+]) + eina_mp_sources
 
 if sys_windows == true
-  sources += 'eina_file_win32.c'
+  eina_src += files('eina_file_win32.c')
 else
-  sources += 'eina_file.c'
+  eina_src += files('eina_file.c')
 endif
 
 eina_config = configuration_data()
@@ -242,7 +243,7 @@ if use_valgrind
    else
      config_h.set('HAVE_VALGRIND', 1)
    endif
-   eina_deps += valgrind
+   eina_ext_deps += valgrind
 else
    config_h.set('NVALGRIND', 1)
    valgrind = []
@@ -266,7 +267,7 @@ endif
 
 if get_option('systemd') == true
   systemd = dependency('libsystemd')
-  eina_deps += systemd
+  eina_ext_deps += systemd
   config_h.set('HAVE_SYSTEMD', '1')
   if systemd.version().version_compare('>=209')
     config_h.set('HAVE_SYSTEMD_LOGIN_209', '1')
@@ -356,7 +357,7 @@ public_headers += eina_config_file
 unwind = dependency('libunwind-generic', required: false)
 if unwind.found()
    config_h.set('HAVE_UNWIND', 1)
-   eina_deps += unwind
+   eina_ext_deps += unwind
    config_h.set('EINA_LOG_BACKTRACE_ENABLE', 1)
 endif
 
@@ -365,12 +366,14 @@ iconv = dependency('iconv', required: false)
 if iconv.found() == false
   iconv = cc.find_library('iconv', required: false)
 endif
+eina_ext_deps += [iconv]
 
 execinfo = cc.find_library('execinfo', required: false)
+eina_ext_deps += [execinfo]
 
-eina_lib = library('eina', sources,
+eina_lib = library('eina', eina_src,
   include_directories : config_dir,
-  dependencies: [m, rt, dl, execinfo, iconv, eina_deps, thread_dep, eina_mem_pools, evil],
+  dependencies: eina_ext_deps + [eina_deps, evil],
   install: true,
   version : meson.project_version()
 )

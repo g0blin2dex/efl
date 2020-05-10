@@ -1,4 +1,4 @@
-ecore_drm_deps = [eeze, eldbus, ecore_input, ecore, eo, efl, eina, m]
+ecore_drm_deps = [eeze, eldbus, ecore_input, ecore, eo, efl, eina, m, systemd]
 ecore_drm_pub_deps = [dependency('libinput', version: '>= 1.6.0'), dependency('libdrm', version: '>= 2.4'), dependency('wayland-cursor', version: '>= 1.8.0 '),  dependency('xkbcommon', version: '>= 0.3.0'), dependency('gbm')]
 
 ecore_drm_src = [
