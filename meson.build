@@ -96,7 +96,6 @@ foreach lang : ['c', 'objc', 'cpp']
   add_global_arguments('-D_GNU_SOURCE=1', language: lang)
   add_global_arguments('-DEFL_BETA_API_SUPPORT=1', language: lang)
   add_global_arguments('-DNEED_RUN_IN_TREE=1', language: lang)
-  add_global_arguments('-DEFL_BUILD=1', language: lang)
   add_global_arguments('-DELM_INTERNAL_API_ARGESFSDFEFC=1', language: lang)
   if sys_windows == true
     add_global_arguments('-D_POSIX_C_SOURCE=200809L', language: lang)
@@ -240,7 +239,6 @@ if sys_exe_extension == ''
 else
   config_h.set_quoted('EXE_SUFFIX', '.'+sys_exe_extension)
 endif
-config_h.set('EFL_BUILD', '1')
 
 if get_option('tslib') == true
   config_h.set('HAVE_TSLIB', '1')
@@ -363,6 +361,7 @@ foreach package : subprojects
   package_c_args = [
     '-DPACKAGE_DATA_DIR="'+ join_paths(dir_data, package_name)+'"',
     '-DNEED_RUN_IN_TREE=1',
+    '-DEFL_BUILD=1',
   ]
   automatic_pkgfile = true
   if package[1].length() == 0 or get_option(package[1][0])
