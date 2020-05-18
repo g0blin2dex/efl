@@ -53,8 +53,6 @@ emotion_lib = library('emotion',
     version : meson.project_version()
 )
 
-emotion_package_c_args = package_c_args
-
 emotion = declare_dependency(
   include_directories: [include_directories('.')],
   link_with: emotion_lib,

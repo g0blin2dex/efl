@@ -1008,14 +1008,12 @@ c = configure_file(
   install_dir : dir_package_include,
   configuration: elm_options)
 
-elm_package_c_args =  package_c_args + ['-DELEMENTARY_BUILD=1']
-
 elementary_lib = library('elementary',
     elementary_src, pub_eo_file_target, priv_eo_file_target, c, embed_config,
     dependencies: elementary_pub_deps + elementary_deps,
     include_directories : config_dir + [include_directories('.')] + [include_directories(join_paths('..', '..', '..'))] + [ecore_evas_wayland_engine_include_dir],
     install: true,
-    c_args : elm_package_c_args,
+    c_args : package_c_args,
     version : meson.project_version()
 )
 
