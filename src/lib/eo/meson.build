@@ -71,7 +71,6 @@ eo_lib_dbg = library('eo_dbg',
     c_args : package_c_args + [ '-DEO_DEBUG' ],
     dependencies: [eina, valgrind, dl, execinfo],
     install: true,
-    c_args : '-DEO_DEBUG',
     version : meson.project_version()
 )
 
